@@ -220,6 +220,7 @@ function Load_Iranpaymex_Gateway()
                 $products = implode(' - ', $products);
 
                 $Description = 'خریدار : ' . $order->billing_first_name . ' ' . $order->billing_last_name . ' | محصولات : ' . $products;
+                $Description = substr($Description,0,197);
 
                 $Mobile = get_post_meta($order_id, '_billing_phone', true) ? get_post_meta($order_id, '_billing_phone', true) : '-';
                 $Email = $order->billing_email;
@@ -250,7 +251,7 @@ function Load_Iranpaymex_Gateway()
                     echo "cURL Error";
                 } else {
                     if ($result['data']['authority']) {
-                        wp_redirect(sprintf($Iranpaymexdirect, $result['data']['authority']));
+                        wp_redirect(sprintf($Iranpaymexdirect, urlencode($result['data']['authority'])));
                         exit;
                     } else {
                         $Message = '<pre>' . $result["error"]["code"] . $result["error"]["fa_message"] . '</pre>';
