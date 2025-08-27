@@ -5,7 +5,7 @@
     Description: افزونه درگاه پرداخت امن و سریع ایران پی مکس برای فروشگاه ساز ووکامرس
     Plugin URI: https://iranpaymex.com/
     Author: Amir Akbarzadeh
-    Author URI: https://iranpaymex.com/
+    Author URI: http://iranpaymex.com/
     WC requires at least: 3.0
     WC tested up to: 9.4.1
     Requires at least: 5.8
