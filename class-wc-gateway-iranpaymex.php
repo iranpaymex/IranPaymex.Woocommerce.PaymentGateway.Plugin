@@ -220,11 +220,18 @@ function Load_Iranpaymex_Gateway()
                 $products = implode(' - ', $products);
 
                 $Description = 'خریدار : ' . $order->billing_first_name . ' ' . $order->billing_last_name . ' | محصولات : ' . $products;
-                $Description = substr($Description,0,197);
 
                 $Mobile = get_post_meta($order_id, '_billing_phone', true) ? get_post_meta($order_id, '_billing_phone', true) : '-';
                 $Email = $order->billing_email;
                 $Description = apply_filters('WC_Iranpaymex_Description', $Description, $order_id);
+                // Ensure it's valid UTF-8
+                $Description = mb_convert_encoding($Description, 'UTF-8', 'UTF-8');
+
+                // Trim safely without breaking UTF-8 characters
+                $Description = mb_substr($Description, 0, 197, 'UTF-8');
+
+                // Remove any invalid control characters
+                $Description = preg_replace('/[^\P{C}\n]+/u', '', $Description);
                 $Mobile = apply_filters('WC_Iranpaymex_Mobile', $Mobile, $order_id);
                 $Email = apply_filters('WC_Iranpaymex_Email', $Email, $order_id);                
                 do_action('WC_Iranpaymex_Gateway_Payment', $order_id, $Description, $Mobile);
