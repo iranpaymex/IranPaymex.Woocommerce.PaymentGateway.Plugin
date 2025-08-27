@@ -9,7 +9,7 @@
     WC requires at least: 3.0
     WC tested up to: 9.4.1
     Requires at least: 5.8
-    Tested up to: 6.7.1
+    Tested up to: 9.4.1
     License: GPLv3 or later
     License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 */
