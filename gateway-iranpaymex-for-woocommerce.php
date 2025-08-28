@@ -15,4 +15,4 @@
     License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 */
 if ( ! defined( 'ABSPATH' ) ) exit;
-include_once("class-wc-gateway-iranpaymex.php");
+include_once("class-irpmx-gateway.php");
