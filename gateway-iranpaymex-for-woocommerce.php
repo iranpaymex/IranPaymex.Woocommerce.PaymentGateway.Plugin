@@ -7,10 +7,12 @@
     Author: Amir Akbarzadeh
     Author URI: http://iranpaymex.com/
     WC requires at least: 3.0
-    WC tested up to: 9.4.1
+    WC tested up to: 6.8
     Requires at least: 5.8
-    Tested up to: 9.4.1
+    Requires Plugins: woocommerce
+    Tested up to: 6.8
     License: GPLv3 or later
     License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 */
+if ( ! defined( 'ABSPATH' ) ) exit;
 include_once("class-wc-gateway-iranpaymex.php");

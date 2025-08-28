@@ -5,7 +5,7 @@ Requires at least: 4.5
 Donate link: https://iranpaymex.com
 Requires at least: 4.5
 Version: 5.0.16
-Tested up to: 9.4.1
+Tested up to: 6.6
 Stable tag: 5.0.16
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
