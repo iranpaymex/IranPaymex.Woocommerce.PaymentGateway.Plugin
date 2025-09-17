@@ -3,34 +3,34 @@
 if (!defined('ABSPATH'))
     exit;
 
-function Load_Iranpaymex_Gateway()
+function Load_GATEIRFO_Iranpaymex()
 {
 
-    if (class_exists('WC_Payment_Gateway') && !class_exists('WC_Iranpaymex') && !function_exists('Woocommerce_Add_Iranpaymex_Gateway')) {
+    if (class_exists('WC_Payment_Gateway') && !class_exists('WOO_GAPIRDUIRANPAYMEX') && !function_exists('GATEIRFO_Iranpaymex_Add_Iranpaymex_Gateway')) {
 
 
-        add_filter('woocommerce_payment_gateways', 'Woocommerce_Add_Iranpaymex_Gateway');
+        add_filter('woocommerce_payment_gateways', 'GATEIRFO_Iranpaymex_Add_Iranpaymex_Gateway');
 
-        function Woocommerce_Add_Iranpaymex_Gateway($methods)
+        function GATEIRFO_Iranpaymex_Add_Iranpaymex_Gateway($methods)
         {
-            $methods[] = 'WC_Iranpaymex';
+            $methods[] = 'GATEIRFO_Iranpaymex';
             return $methods;
         }
 
 
-        class WC_Iranpaymex extends WC_Payment_Gateway
+        class GATEIRFO_Iranpaymex extends WC_Payment_Gateway
         {
 
             public function __construct()
             {
 
-                $this->id = 'WC_Iranpaymex';
+                $this->id = 'GATEIRFO_Iranpaymex';
                 $this->method_title = __('پرداخت ایران پی مکس', 'woocommerce');
                 $this->method_description = __('تنظیمات درگاه پرداخت ایران پی مکس برای افزونه فروشگاه ساز ووکامرس', 'woocommerce');
-                $this->icon = apply_filters('WC_Iranpaymex_logo', WP_PLUGIN_URL . "/" . plugin_basename(dirname(__FILE__)) . '/assets/images/logo.png');
+                $this->icon = apply_filters('GATEIRFO_Iranpaymex_logo', WOO_GAPIRDUIRANPAYMEX . '/assets/images/logo.png');
                 $this->has_fields = false;
 
-                $this->init_form_fields();
+                $this->GATEIRFO_Iranpaymex_init_form_fields();
                 $this->init_settings();
 
                 $this->title = $this->settings['title'];
@@ -46,8 +46,8 @@ function Load_Iranpaymex_Gateway()
                 else
                     add_action('woocommerce_update_options_payment_gateways', array($this, 'process_admin_options'));
 
-                add_action('woocommerce_receipt_' . $this->id . '', array($this, 'Send_to_Iranpaymex_Gateway'));
-                add_action('woocommerce_api_' . strtolower(get_class($this)) . '', array($this, 'Return_from_Iranpaymex_Gateway'));
+                add_action('woocommerce_receipt_' . $this->id . '', array($this, 'GATEIRFO_Iranpaymex_Send_to_Iranpaymex_Gateway'));
+                add_action('woocommerce_api_' . strtolower(get_class($this)) . '', array($this, 'GATEIRFO_Iranpaymex_Return_from_Iranpaymex_Gateway'));
             }
 
 
@@ -58,10 +58,10 @@ function Load_Iranpaymex_Gateway()
                 parent::admin_options();
             }
 
-            public function init_form_fields()
+            public function GATEIRFO_Iranpaymex_init_form_fields()
             {
                 $this->form_fields = apply_filters(
-                    'WC_Iranpaymex_Config',
+                    'GATEIRFO_Iranpaymex_Config',
                     array(
                         'base_confing' => array(
                             'title' => __('تنظیمات پایه ای', 'woocommerce'),
@@ -138,7 +138,7 @@ function Load_Iranpaymex_Gateway()
              *
              * @return mixed
              */
-            public function SendRequestToIranpaymex($action, $params)
+            public function GATEIRFO_Iranpaymex_SendRequestToIranpaymex($action, $params)
             {
                 try {
 
@@ -166,7 +166,7 @@ function Load_Iranpaymex_Gateway()
                 }
             }
 
-            public function Send_to_Iranpaymex_Gateway($order_id)
+            public function GATEIRFO_Iranpaymex_Send_to_Iranpaymex_Gateway($order_id)
             {
 
 
@@ -174,18 +174,18 @@ function Load_Iranpaymex_Gateway()
                 $woocommerce->session->order_id_Iranpaymex = $order_id;
                 $order = new WC_Order($order_id);
                 $currency = $order->get_currency();
-                $currency = apply_filters('WC_Iranpaymex_Currency', $currency, $order_id);
+                $currency = apply_filters('GATEIRFO_Iranpaymex_Currency', $currency, $order_id);
 
 
                 $form = '<form action="" method="POST" class="Iranpaymex-checkout-form" id="Iranpaymex-checkout-form">
 						<input type="submit" name="Iranpaymex_submit" class="button alt" id="Iranpaymex-payment-button" value="' . __('پرداخت', 'woocommerce') . '"/>
 						<a class="button cancel" href="' . $woocommerce->cart->get_checkout_url() . '">' . __('بازگشت', 'woocommerce') . '</a>
 					 </form><br/>';
-                $form = apply_filters('WC_Iranpaymex_Form', $form, $order_id, $woocommerce);
+                $form = apply_filters('GATEIRFO_Iranpaymex_Form', $form, $order_id, $woocommerce);
 
-                do_action('WC_Iranpaymex_Gateway_Before_Form', $order_id, $woocommerce);
+                do_action('GATEIRFO_Iranpaymex_Gateway_Before_Form', $order_id, $woocommerce);
                 echo $form;
-                do_action('WC_Iranpaymex_Gateway_After_Form', $order_id, $woocommerce);
+                do_action('GATEIRFO_Iranpaymex_Gateway_After_Form', $order_id, $woocommerce);
 
 
                 $Amount = intval($order->order_total);
@@ -206,7 +206,7 @@ function Load_Iranpaymex_Gateway()
                 $Amount = apply_filters('woocommerce_order_amount_total_IRANIAN_gateways_irt', $Amount, $currency);
                 $Amount = apply_filters('woocommerce_order_amount_total_Iranpaymex_gateway', $Amount, $currency);
 
-                $CallbackUrl = add_query_arg('wc_order', $order_id, WC()->api_request_url('WC_Iranpaymex'));
+                $CallbackUrl = add_query_arg('wc_order', $order_id, WC()->api_request_url('GATEIRFO_Iranpaymex'));
 
                 // Iranpaymex Hash Secure Code
                 $hash = md5($order_id . $Amount . $this->signature);
@@ -223,7 +223,7 @@ function Load_Iranpaymex_Gateway()
 
                 $Mobile = get_post_meta($order_id, '_billing_phone', true) ? get_post_meta($order_id, '_billing_phone', true) : '-';
                 $Email = $order->billing_email;
-                $Description = apply_filters('WC_Iranpaymex_Description', $Description, $order_id);
+                $Description = apply_filters('GATEIRFO_Iranpaymex_Description', $Description, $order_id);
                 // Ensure it's valid UTF-8
                 $Description = mb_convert_encoding($Description, 'UTF-8', 'UTF-8');
 
@@ -232,9 +232,9 @@ function Load_Iranpaymex_Gateway()
 
                 // Remove any invalid control characters
                 $Description = preg_replace('/[^\P{C}\n]+/u', '', $Description);
-                $Mobile = apply_filters('WC_Iranpaymex_Mobile', $Mobile, $order_id);
-                $Email = apply_filters('WC_Iranpaymex_Email', $Email, $order_id);                
-                do_action('WC_Iranpaymex_Gateway_Payment', $order_id, $Description, $Mobile);
+                $Mobile = apply_filters('GATEIRFO_Iranpaymex_Mobile', $Mobile, $order_id);
+                $Email = apply_filters('GATEIRFO_Iranpaymex_Email', $Email, $order_id);                
+                do_action('GATEIRFO_Iranpaymex_Gateway_Payment', $order_id, $Description, $Mobile);
                 $Email = !filter_var($Email, FILTER_VALIDATE_EMAIL) === false ? $Email : '';
                 $Mobile = preg_match('/^09[0-9]{9}/i', $Mobile) ? $Mobile : '';
 
@@ -252,7 +252,7 @@ function Load_Iranpaymex_Gateway()
                     // )
                 );
 
-                $result = $this->SendRequestToIranpaymex('create', json_encode($data));
+                $result = $this->GATEIRFO_Iranpaymex_SendRequestToIranpaymex('create', json_encode($data));
 
                 if ($result === false) {
                     echo "cURL Error";
@@ -269,20 +269,20 @@ function Load_Iranpaymex_Gateway()
                 if (!empty($Message) && $Message) {
 
                     $Note = sprintf(__('خطا در هنگام ارسال به بانک : %s', 'woocommerce'), $Message);
-                    $Note = apply_filters('WC_Iranpaymex_Send_to_Gateway_Failed_Note', $Note, $order_id, $Fault);
+                    $Note = apply_filters('GATEIRFO_Iranpaymex_Send_to_Gateway_Failed_Note', $Note, $order_id, $Fault);
                     $order->add_order_note($Note);
 
 
                     $Notice = sprintf(__('در هنگام اتصال به بانک خطای زیر رخ داده است : <br/>%s', 'woocommerce'), $Message);
-                    $Notice = apply_filters('WC_Iranpaymex_Send_to_Gateway_Failed_Notice', $Notice, $order_id, $Fault);
+                    $Notice = apply_filters('GATEIRFO_Iranpaymex_Send_to_Gateway_Failed_Notice', $Notice, $order_id, $Fault);
                     if ($Notice)
                         wc_add_notice($Notice, 'error');
 
-                    do_action('WC_Iranpaymex_Send_to_Gateway_Failed', $order_id, $Fault);
+                    do_action('GATEIRFO_Iranpaymex_Send_to_Gateway_Failed', $order_id, $Fault);
                 }
             }
 
-            public function Return_from_Iranpaymex_Gateway()
+            public function GATEIRFO_Iranpaymex_Return_from_Iranpaymex_Gateway()
             {
 
                 $InvoiceNumber = isset($_GET['invoiceId']) ? sanitize_text_field($_GET['invoiceId']) : '';
@@ -305,7 +305,7 @@ function Load_Iranpaymex_Gateway()
 
                     $order = new WC_Order($order_id);
                     $currency = $order->get_currency();
-                    $currency = apply_filters('WC_Iranpaymex_Currency', $currency, $order_id);
+                    $currency = apply_filters('GATEIRFO_Iranpaymex_Currency', $currency, $order_id);
 
 
                     $Amount = intval($order->order_total);
@@ -331,7 +331,7 @@ function Load_Iranpaymex_Gateway()
                             if ($Status == 'OK') {
                                 $Signature = $this->signature;
                                 $data = array('signature' => $Signature, 'authority' => $Authority , 'invoiceId' => $InvoiceNumber , 'amount' => $Amount);
-                                $result = $this->SendRequestToIranpaymex('verify', json_encode($data));
+                                $result = $this->GATEIRFO_Iranpaymex_SendRequestToIranpaymex('verify', json_encode($data));
 
                                 if ($result['data']["status"] == "success" && $result["data"]['amount'] == $Amount) {
                                     $Status = 'completed';
@@ -368,7 +368,7 @@ function Load_Iranpaymex_Gateway()
                                 $Note = sprintf(__('پرداخت موفقیت آمیز بود .<br/> کد رهگیری : %s', 'woocommerce'), $Transaction_ID);
                                 $Note .= sprintf(__('<br/> شماره کارت پرداخت کننده : %s', 'woocommerce'), $verify_card_no);
                                 $Note .= sprintf(__('<br/> شماره مرجع : %s', 'woocommerce'), $verify_ref_num);
-                                $Note = apply_filters('WC_Iranpaymex_Return_from_Gateway_Success_Note', $Note, $order_id, $Transaction_ID, $verify_card_no, $verify_ref_num);
+                                $Note = apply_filters('GATEIRFO_Iranpaymex_Return_from_Gateway_Success_Note', $Note, $order_id, $Transaction_ID, $verify_card_no, $verify_ref_num);
                                 if ($Note)
                                     $order->add_order_note($Note, 1);
 
@@ -377,11 +377,11 @@ function Load_Iranpaymex_Gateway()
 
                                 $Notice = str_replace("{transaction_id}", $Transaction_ID, $Notice);
 
-                                $Notice = apply_filters('WC_Iranpaymex_Return_from_Gateway_Success_Notice', $Notice, $order_id, $Transaction_ID);
+                                $Notice = apply_filters('GATEIRFO_Iranpaymex_Return_from_Gateway_Success_Notice', $Notice, $order_id, $Transaction_ID);
                                 if ($Notice)
                                     wc_add_notice($Notice, 'success');
 
-                                do_action('WC_Iranpaymex_Return_from_Gateway_Success', $order_id, $Transaction_ID);
+                                do_action('GATEIRFO_Iranpaymex_Return_from_Gateway_Success', $order_id, $Transaction_ID);
 
                                 wp_redirect(add_query_arg('wc_status', 'success', $this->get_return_url($order)));
                                 exit;
@@ -392,7 +392,7 @@ function Load_Iranpaymex_Gateway()
 
                                 $Note = sprintf(__('خطا در هنگام بازگشت از بانک : %s %s', 'woocommerce'), $Message, $tr_id);
 
-                                $Note = apply_filters('WC_Iranpaymex_Return_from_Gateway_Failed_Note', $Note, $order_id, $Transaction_ID, $Fault);
+                                $Note = apply_filters('GATEIRFO_Iranpaymex_Return_from_Gateway_Failed_Note', $Note, $order_id, $Transaction_ID, $Fault);
                                 if ($Note)
                                     $order->add_order_note($Note, 1);
 
@@ -401,11 +401,11 @@ function Load_Iranpaymex_Gateway()
                                 $Notice = str_replace("{transaction_id}", $Transaction_ID, $Notice);
 
                                 $Notice = str_replace("{fault}", $Message, $Notice);
-                                $Notice = apply_filters('WC_Iranpaymex_Return_from_Gateway_Failed_Notice', $Notice, $order_id, $Transaction_ID, $Fault);
+                                $Notice = apply_filters('GATEIRFO_Iranpaymex_Return_from_Gateway_Failed_Notice', $Notice, $order_id, $Transaction_ID, $Fault);
                                 if ($Notice)
                                     wc_add_notice($Notice, 'error');
 
-                                do_action('WC_Iranpaymex_Return_from_Gateway_Failed', $order_id, $Transaction_ID, $Fault);
+                                do_action('GATEIRFO_Iranpaymex_Return_from_Gateway_Failed', $order_id, $Transaction_ID, $Fault);
 
                                 wp_redirect($woocommerce->cart->get_checkout_url());
                                 exit;
@@ -418,12 +418,12 @@ function Load_Iranpaymex_Gateway()
 
                             $Notice = str_replace("{transaction_id}", $Transaction_ID, $Notice);
 
-                            $Notice = apply_filters('WC_Iranpaymex_Return_from_Gateway_ReSuccess_Notice', $Notice, $order_id, $Transaction_ID);
+                            $Notice = apply_filters('GATEIRFO_Iranpaymex_Return_from_Gateway_ReSuccess_Notice', $Notice, $order_id, $Transaction_ID);
                             if ($Notice)
                                 wc_add_notice($Notice, 'success');
 
 
-                            do_action('WC_Iranpaymex_Return_from_Gateway_ReSuccess', $order_id, $Transaction_ID);
+                            do_action('GATEIRFO_Iranpaymex_Return_from_Gateway_ReSuccess', $order_id, $Transaction_ID);
 
                             wp_redirect(add_query_arg('wc_status', 'success', $this->get_return_url($order)));
                             exit;
@@ -438,11 +438,11 @@ function Load_Iranpaymex_Gateway()
                     $Fault = __('شماره سفارش وجود ندارد .', 'woocommerce');
                     $Notice = wpautop(wptexturize($this->failed_massage));
                     $Notice = str_replace("{fault}", $Fault, $Notice);
-                    $Notice = apply_filters('WC_Iranpaymex_Return_from_Gateway_No_Order_ID_Notice', $Notice, $order_id, $Fault);
+                    $Notice = apply_filters('GATEIRFO_Iranpaymex_Return_from_Gateway_No_Order_ID_Notice', $Notice, $order_id, $Fault);
                     if ($Notice)
                         wc_add_notice($Notice, 'error');
 
-                    do_action('WC_Iranpaymex_Return_from_Gateway_No_Order_ID', $order_id, $Transaction_ID, $Fault);
+                    do_action('GATEIRFO_Iranpaymex_Return_from_Gateway_No_Order_ID', $order_id, $Transaction_ID, $Fault);
 
                     wp_redirect($woocommerce->cart->get_checkout_url());
                     exit;
@@ -452,4 +452,4 @@ function Load_Iranpaymex_Gateway()
     }
 }
 
-add_action('plugins_loaded', 'Load_Iranpaymex_Gateway', 0);
+add_action('plugins_loaded', 'Load_GATEIRFO_Iranpaymex', 0);
