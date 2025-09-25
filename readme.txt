@@ -1,4 +1,4 @@
-=== Gateway iranpaymex for Woocommerce ===
+=== iranpaymex Payment Gateway for Woocommerce ===
 Contributors: iranpaymex
 Tags: woocommerce,iran paymex,gateway,payment,ایران پی مکس
 Requires at least: 4.5

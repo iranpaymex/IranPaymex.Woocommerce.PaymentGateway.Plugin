@@ -1,6 +1,6 @@
 <?php
 /*
-    Plugin Name: Gateway iranpaymex for Woocommerce
+    Plugin Name: iranpaymex Payment Gateway for Woocommerce
     Version: 5.0.18
     Description: افزونه درگاه پرداخت امن و سریع ایران پی مکس برای فروشگاه ساز ووکامرس
     Plugin URI: https://iranpaymex.com/
