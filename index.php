@@ -1,11 +1,11 @@
 <?php
 /*
-    Plugin Name: افزونه پرداخت امن و پایدار ایران پی‌مکس برای ووکامرس
+    Plugin Name: افزونه پرداخت امن و پایدار ایران پی‌مکس برای ووکامرس Iranpaymex
     Version: 5.0.19
     Description: افزونه درگاه پرداخت امن و سریع ایران پی‌مکس برای فروشگاه ساز ووکامرس
     Plugin URI: https://iranpaymex.com/
     Author: iranpaymex
-    Text Domain: wc-iranpaymex
+    Text Domain: gateway-iranpaymex-for-woocommerce
     Domain Path: /languages
     Author URI: http://iranpaymex.com/
     WC tested up to: 9.4.1

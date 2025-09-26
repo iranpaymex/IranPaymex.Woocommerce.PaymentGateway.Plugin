@@ -3,7 +3,7 @@
 if (!defined('ABSPATH'))
     exit;
 
-define('iranpaymex', 'wc-iranpaymex');
+define('iranpaymex', 'wc-gateway-iranpaymex-for-woocommerce');
 
 add_action('plugins_loaded', 'load_iranpaymex_textdomain');
 function load_iranpaymex_textdomain() {
@@ -70,10 +70,10 @@ function Load_GATEIRFO_Iranpaymex()
                 if ( empty( $signature ) && 'yes' === $this->get_option( 'enabled' ) ) {
                     printf(
                         '<div class="notice notice-error is-dismissible"><p>%s</p><p>%s <a href="%s" target="_blank" rel="noopener noreferrer">%s</a></p></div>',
-                        esc_html__( 'کد امضا درگاه ایران پی‌مکس خالی است. لطفاً آن را در تنظیمات درگاه وارد نمایید.', WC_ZPAL_TEXT_DOMAIN ),
-                        esc_html__( 'در صورت عدم دسترسی به کد امضا خود لطفا با پشتیبانی ایران ‌پی‌مکس در ارتباط باشید:', WC_ZPAL_TEXT_DOMAIN ),
+                        esc_html__( 'کد امضا درگاه ایران پی‌مکس خالی است. لطفاً آن را در تنظیمات درگاه وارد نمایید.', iranpaymex ),
+                        esc_html__( 'در صورت عدم دسترسی به کد امضا خود لطفا با پشتیبانی ایران ‌پی‌مکس در ارتباط باشید:', iranpaymex ),
                         esc_url( 'https://iranpaymex.com/contact' ),
-                        esc_html__( 'تماس با پشتیبانی', WC_ZPAL_TEXT_DOMAIN )
+                        esc_html__( 'تماس با پشتیبانی', iranpaymex )
                     );
 
                 }
