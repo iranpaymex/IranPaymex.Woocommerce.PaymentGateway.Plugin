@@ -112,7 +112,7 @@ function Load_GATEIRFO_Iranpaymex()
                         'signature' => array(
                             'title' => __('کد امضا', GATEIRFO_Iranpaymex),
                             'type' => 'text',
-                            'description' => __('کد امضای ایران پی‌مکس', GATEIRFO_Iranpaymex),
+                            'description' => __('کد امضا ایران پی‌مکس برای دریافت ، لطفا با پشتیبانی ایران پی‌مکس در ارتباط باشید .', GATEIRFO_Iranpaymex),
                             'default' => 'Iranpaymex',
                             'desc_tip' => true
                         ),
