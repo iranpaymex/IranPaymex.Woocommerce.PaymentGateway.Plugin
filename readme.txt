@@ -1,11 +1,11 @@
-=== افزونه پرداخت امن و پایدار ایران پی‌مکس برای ووکامرس ===
+=== Iranpaymex Gateway ===
 Contributors: iranpaymex
 Tags: woocommerce,iran paymex,gateway,payment,ایران پی‌مکس
 Requires at least: 4.5
 Donate link: https://iranpaymex.com
 Requires at least: 4.5
 Version: 5.0.19
-Tested up to: 6.8.2
+Tested up to: 6.8
 Stable tag: 5.0.19
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html

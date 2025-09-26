@@ -5,6 +5,11 @@ if (!defined('ABSPATH'))
 
 define('GATEIRFO_Iranpaymex', 'wc-irpmx');
 
+add_action('plugins_loaded', 'load_iranpaymex_textdomain');
+function load_iranpaymex_textdomain() {
+    load_plugin_textdomain(GATEIRFO_Iranpaymex, false, dirname(plugin_basename(__FILE__)) . '/languages/');
+}
+
 function Load_GATEIRFO_Iranpaymex()
 {
 
