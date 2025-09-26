@@ -8,7 +8,7 @@
     Text Domain: wc-irpmx
     Author URI: http://iranpaymex.com/
     WC tested up to: 9.4.1
-    Tested up to: 6.7.1
+    Tested up to: 6.8.2
     License: GPLv3 or later
     License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 */
