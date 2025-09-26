@@ -27,8 +27,8 @@ function Load_GATEIRFO_Iranpaymex()
             {
 
                 $this->id = 'GATEIRFO_Iranpaymex';
-                $this->method_title = __('پرداخت ایران پی مکس', GATEIRFO_Iranpaymex);
-                $this->method_description = __('تنظیمات درگاه پرداخت ایران پی مکس برای افزونه فروشگاه ساز ووکامرس', GATEIRFO_Iranpaymex);
+                $this->method_title = __('پرداخت امن و پایدار ایران‌ پی‌مکس', GATEIRFO_Iranpaymex);
+                $this->method_description = __('تنظیمات درگاه پرداخت ایران پی‌مکس برای افزونه فروشگاه ساز ووکامرس', GATEIRFO_Iranpaymex);
                 $this->icon = apply_filters('GATEIRFO_Iranpaymex_logo', WOO_GAPIRDUIRANPAYMEX . '/assets/images/logo.png');
                 $this->has_fields = false;
 
@@ -73,8 +73,8 @@ function Load_GATEIRFO_Iranpaymex()
                         'enabled' => array(
                             'title' => __('فعالسازی/غیرفعالسازی', GATEIRFO_Iranpaymex),
                             'type' => 'checkbox',
-                            'label' => __('فعالسازی درگاه ایران پی مکس', GATEIRFO_Iranpaymex),
-                            'description' => __('برای فعالسازی درگاه پرداخت ایران پی مکس باید چک باکس را تیک بزنید', GATEIRFO_Iranpaymex),
+                            'label' => __('فعالسازی درگاه ایران پی‌مکس', GATEIRFO_Iranpaymex),
+                            'description' => __('برای فعالسازی درگاه پرداخت ایران پی‌مکس باید چک باکس را تیک بزنید', GATEIRFO_Iranpaymex),
                             'default' => 'yes',
                             'desc_tip' => true,
                         ),
@@ -82,7 +82,7 @@ function Load_GATEIRFO_Iranpaymex()
                             'title' => __('عنوان درگاه', GATEIRFO_Iranpaymex),
                             'type' => 'text',
                             'description' => __('عنوان درگاه که در طی خرید به مشتری نمایش داده میشود', GATEIRFO_Iranpaymex),
-                            'default' => __('پرداخت امن ایران پی مکس', GATEIRFO_Iranpaymex),
+                            'default' => __('پرداخت امن ایران پی‌مکس', GATEIRFO_Iranpaymex),
                             'desc_tip' => true,
                         ),
                         'description' => array(
@@ -90,17 +90,17 @@ function Load_GATEIRFO_Iranpaymex()
                             'type' => 'text',
                             'desc_tip' => true,
                             'description' => __('توضیحاتی که در طی عملیات پرداخت برای درگاه نمایش داده خواهد شد', GATEIRFO_Iranpaymex),
-                            'default' => __('پرداخت امن به وسیله کلیه کارت های عضو شتاب از طریق درگاه ایران پی مکس', GATEIRFO_Iranpaymex)
+                            'default' => __('پرداخت امن به وسیله کلیه کارت های عضو شتاب از طریق درگاه ایران پی‌مکس', GATEIRFO_Iranpaymex)
                         ),
                         'account_confing' => array(
-                            'title' => __('تنظیمات حساب ایران پی مکس', GATEIRFO_Iranpaymex),
+                            'title' => __('تنظیمات حساب ایران پی‌مکس', GATEIRFO_Iranpaymex),
                             'type' => 'title',
                             'description' => '',
                         ),
                         'signature' => array(
                             'title' => __('کد امضای', GATEIRFO_Iranpaymex),
                             'type' => 'text',
-                            'description' => __('کد امضای ایران پی مکس', GATEIRFO_Iranpaymex),
+                            'description' => __('کد امضای ایران پی‌مکس', GATEIRFO_Iranpaymex),
                             'default' => 'Iranpaymex',
                             'desc_tip' => true
                         ),
@@ -112,13 +112,13 @@ function Load_GATEIRFO_Iranpaymex()
                         'success_massage' => array(
                             'title' => __('پیام پرداخت موفق', GATEIRFO_Iranpaymex),
                             'type' => 'textarea',
-                            'description' => __('متن پیامی که میخواهید بعد از پرداخت موفق به کاربر نمایش دهید را وارد نمایید . همچنین می توانید از شورت کد {transaction_id} برای نمایش کد رهگیری (توکن) ایران پی مکس استفاده نمایید .', GATEIRFO_Iranpaymex),
+                            'description' => __('متن پیامی که میخواهید بعد از پرداخت موفق به کاربر نمایش دهید را وارد نمایید . همچنین می توانید از شورت کد {transaction_id} برای نمایش کد رهگیری (توکن) ایران پی‌مکس استفاده نمایید .', GATEIRFO_Iranpaymex),
                             'default' => __('با تشکر از شما . سفارش شما با موفقیت پرداخت شد .', GATEIRFO_Iranpaymex),
                         ),
                         'failed_massage' => array(
                             'title' => __('پیام پرداخت ناموفق', GATEIRFO_Iranpaymex),
                             'type' => 'textarea',
-                            'description' => __('متن پیامی که میخواهید بعد از پرداخت ناموفق به کاربر نمایش دهید را وارد نمایید . همچنین می توانید از شورت کد {fault} برای نمایش دلیل خطای رخ داده استفاده نمایید . این دلیل خطا از سایت ایران پی مکس ارسال میگردد .', GATEIRFO_Iranpaymex),
+                            'description' => __('متن پیامی که میخواهید بعد از پرداخت ناموفق به کاربر نمایش دهید را وارد نمایید . همچنین می توانید از شورت کد {fault} برای نمایش دلیل خطای رخ داده استفاده نمایید . این دلیل خطا از سایت ایران پی‌مکس ارسال میگردد .', GATEIRFO_Iranpaymex),
                             'default' => __('پرداخت شما ناموفق بوده است . لطفا مجددا تلاش نمایید یا در صورت بروز اشکال با مدیر سایت تماس بگیرید .', GATEIRFO_Iranpaymex),
                         ),
                     )
