@@ -5,7 +5,7 @@
     Description: افزونه درگاه پرداخت امن و سریع ایران پی‌مکس برای فروشگاه ساز ووکامرس
     Plugin URI: https://iranpaymex.com/
     Author: iranpaymex
-    Text Domain: wc-irpmx
+    Text Domain: wc-iranpaymex
     Domain Path: /languages
     Author URI: http://iranpaymex.com/
     WC tested up to: 9.4.1
