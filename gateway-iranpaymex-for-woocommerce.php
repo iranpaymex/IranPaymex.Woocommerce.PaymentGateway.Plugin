@@ -50,7 +50,7 @@ function Load_GATEIRFO_Iranpaymex()
 
                 add_action('woocommerce_receipt_' . $this->id . '', array($this, 'GATEIRFO_Iranpaymex_Send_to_Iranpaymex_Gateway'));
                 add_action('woocommerce_api_' . strtolower(get_class($this)) . '', array($this, 'GATEIRFO_Iranpaymex_Return_from_Iranpaymex_Gateway'));
-                add_action('admin_notices', array($this, 'admin_notice_missing_accesstoken'));
+                add_action('admin_notices', array($this, 'admin_notice_missing_signature'));
             }
 
 
@@ -60,14 +60,17 @@ function Load_GATEIRFO_Iranpaymex()
 
                 parent::admin_options();
             }
-                public function admin_notice_missing_merchantcode() {
+                public function admin_notice_missing_signature() {
                 $signature = $this->get_option('signature');
                 if ( empty( $signature ) && 'yes' === $this->get_option( 'enabled' ) ) {
-                    echo '<div class="notice notice-error is-dismissible">';
-                    echo '<p>' . esc_html__( 'کد امضا درگاه ایران پی‌مکس خالی است. لطفاً آن را در تنظیمات درگاه وارد نمایید.', GATEIRFO_Iranpaymex ) . '</p>';
-                    echo '<p>' . esc_html__( 'در صورت عدم دسترسی به کد امضا خود لطفا با پشتیبانی ایران ‌پی‌مکس در ارتباط باشید:', GATEIRFO_Iranpaymex ) . ' ';
-                    echo '<a href="' . esc_url( 'https://iranpaymex.com/contactus' ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'تماس با پشتیبانی', GATEIRFO_Iranpaymex ) . '</a></p>';
-                    echo '</div>';
+                    printf(
+                        '<div class="notice notice-error is-dismissible"><p>%s</p><p>%s <a href="%s" target="_blank" rel="noopener noreferrer">%s</a></p></div>',
+                        esc_html__( 'کد امضا درگاه ایران پی‌مکس خالی است. لطفاً آن را در تنظیمات درگاه وارد نمایید.', WC_ZPAL_TEXT_DOMAIN ),
+                        esc_html__( 'در صورت عدم دسترسی به کد امضا خود لطفا با پشتیبانی ایران ‌پی‌مکس در ارتباط باشید:', WC_ZPAL_TEXT_DOMAIN ),
+                        esc_url( 'https://iranpaymex.com/contact' ),
+                        esc_html__( 'تماس با پشتیبانی', WC_ZPAL_TEXT_DOMAIN )
+                    );
+
                 }
 
             }
