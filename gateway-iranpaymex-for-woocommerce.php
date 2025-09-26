@@ -64,9 +64,9 @@ function Load_GATEIRFO_Iranpaymex()
                 $signature = $this->get_option('signature');
                 if ( empty( $signature ) && 'yes' === $this->get_option( 'enabled' ) ) {
                     echo '<div class="notice notice-error is-dismissible">';
-                    echo '<p>' . esc_html__( 'کد امضا درگاه ایران پی‌مکس خالی است. لطفاً آن را در تنظیمات درگاه وارد نمایید.', WC_ZPAL_TEXT_DOMAIN ) . '</p>';
-                    echo '<p>' . esc_html__( 'در صورت عدم دسترسی به کد امضا خود لطفا با پشتیبانی ایران ‌پی‌مکس در ارتباط باشید:', WC_ZPAL_TEXT_DOMAIN ) . ' ';
-                    echo '<a href="' . esc_url( 'https://iranpaymex.com/contactus' ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'تماس با پشتیبانی', WC_ZPAL_TEXT_DOMAIN ) . '</a></p>';
+                    echo '<p>' . esc_html__( 'کد امضا درگاه ایران پی‌مکس خالی است. لطفاً آن را در تنظیمات درگاه وارد نمایید.', GATEIRFO_Iranpaymex ) . '</p>';
+                    echo '<p>' . esc_html__( 'در صورت عدم دسترسی به کد امضا خود لطفا با پشتیبانی ایران ‌پی‌مکس در ارتباط باشید:', GATEIRFO_Iranpaymex ) . ' ';
+                    echo '<a href="' . esc_url( 'https://iranpaymex.com/contactus' ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'تماس با پشتیبانی', GATEIRFO_Iranpaymex ) . '</a></p>';
                     echo '</div>';
                 }
 
