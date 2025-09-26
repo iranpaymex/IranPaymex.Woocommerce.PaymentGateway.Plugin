@@ -62,12 +62,14 @@ function Load_GATEIRFO_Iranpaymex()
             }
                 public function admin_notice_missing_merchantcode() {
                 $signature = $this->get_option('signature');
-                if (empty($signature) && 'yes' === $this->get_option('enabled')) {
+                if ( empty( $signature ) && 'yes' === $this->get_option( 'enabled' ) ) {
                     echo '<div class="notice notice-error is-dismissible">';
-                    echo '<p>' . __('کد امضا درگاه ایران پی‌مکس خالی است. لطفاً آن را در تنظیمات درگاه وارد نمایید.', WC_ZPAL_TEXT_DOMAIN) . '</p>';
-                    echo '<p>' . __('در صورت عدم دسترسی به کد امضا خود لطفا با پشتیبانی ایران ‌پی‌مکس در ارتباط باشید', WC_ZPAL_TEXT_DOMAIN) . '</p>';
+                    echo '<p>' . esc_html__( 'کد امضا درگاه ایران پی‌مکس خالی است. لطفاً آن را در تنظیمات درگاه وارد نمایید.', WC_ZPAL_TEXT_DOMAIN ) . '</p>';
+                    echo '<p>' . esc_html__( 'در صورت عدم دسترسی به کد امضا خود لطفا با پشتیبانی ایران ‌پی‌مکس در ارتباط باشید:', WC_ZPAL_TEXT_DOMAIN ) . ' ';
+                    echo '<a href="' . esc_url( 'https://iranpaymex.com/contactus' ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'تماس با پشتیبانی', WC_ZPAL_TEXT_DOMAIN ) . '</a></p>';
                     echo '</div>';
                 }
+
             }
 
             public function GATEIRFO_Iranpaymex_init_form_fields()
