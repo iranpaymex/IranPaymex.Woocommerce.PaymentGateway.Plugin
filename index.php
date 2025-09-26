@@ -7,8 +7,8 @@
     Author: iranpaymex
     Text Domain: wc-irpmx
     Author URI: http://iranpaymex.com/
-    WC tested up to: 6.7
-    Tested up to: 6.7
+    WC tested up to: 9.4.1
+    Tested up to: 6.7.1
     License: GPLv3 or later
     License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 */
@@ -17,4 +17,4 @@ if (!defined('ABSPATH'))
 
 define('WOO_GAPIRDIRIRANPAYMEX', plugin_dir_path(__FILE__));
 define('WOO_GAPIRDUIRANPAYMEX', plugin_dir_url(__FILE__));
-require_once(WOO_GAPIRDIRIRANPAYMEX . 'gateway-iranpaymex.php');
+require_once(WOO_GAPIRDIRIRANPAYMEX . 'gateway-iranpaymex-for-woocommerce.php');
