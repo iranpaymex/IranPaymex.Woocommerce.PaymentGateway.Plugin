@@ -3,6 +3,8 @@
 if (!defined('ABSPATH'))
     exit;
 
+define('GATEIRFO_Iranpaymex', 'wc-irpmx');
+
 function Load_GATEIRFO_Iranpaymex()
 {
 
@@ -25,8 +27,8 @@ function Load_GATEIRFO_Iranpaymex()
             {
 
                 $this->id = 'GATEIRFO_Iranpaymex';
-                $this->method_title = __('پرداخت ایران پی مکس', 'woocommerce');
-                $this->method_description = __('تنظیمات درگاه پرداخت ایران پی مکس برای افزونه فروشگاه ساز ووکامرس', 'woocommerce');
+                $this->method_title = __('پرداخت ایران پی مکس', GATEIRFO_Iranpaymex);
+                $this->method_description = __('تنظیمات درگاه پرداخت ایران پی مکس برای افزونه فروشگاه ساز ووکامرس', GATEIRFO_Iranpaymex);
                 $this->icon = apply_filters('GATEIRFO_Iranpaymex_logo', WOO_GAPIRDUIRANPAYMEX . '/assets/images/logo.png');
                 $this->has_fields = false;
 
@@ -42,7 +44,7 @@ function Load_GATEIRFO_Iranpaymex()
                 $this->failed_massage = $this->settings['failed_massage'];
 
                 if (version_compare(WOOCOMMERCE_VERSION, '2.0.0', '>='))
-                    add_action('woocommerce_update_options_payment_gateways_' . $this->id, array($this, 'process_admin_options'));
+                    add_action('woocommerce_update_options_payment_gateways' . $this->id, array($this, 'process_admin_options'));
                 else
                     add_action('woocommerce_update_options_payment_gateways', array($this, 'process_admin_options'));
 
@@ -64,60 +66,60 @@ function Load_GATEIRFO_Iranpaymex()
                     'GATEIRFO_Iranpaymex_Config',
                     array(
                         'base_confing' => array(
-                            'title' => __('تنظیمات پایه ای', 'woocommerce'),
+                            'title' => __('تنظیمات پایه ای', GATEIRFO_Iranpaymex),
                             'type' => 'title',
                             'description' => '',
                         ),
                         'enabled' => array(
-                            'title' => __('فعالسازی/غیرفعالسازی', 'woocommerce'),
+                            'title' => __('فعالسازی/غیرفعالسازی', GATEIRFO_Iranpaymex),
                             'type' => 'checkbox',
-                            'label' => __('فعالسازی درگاه ایران پی مکس', 'woocommerce'),
-                            'description' => __('برای فعالسازی درگاه پرداخت ایران پی مکس باید چک باکس را تیک بزنید', 'woocommerce'),
+                            'label' => __('فعالسازی درگاه ایران پی مکس', GATEIRFO_Iranpaymex),
+                            'description' => __('برای فعالسازی درگاه پرداخت ایران پی مکس باید چک باکس را تیک بزنید', GATEIRFO_Iranpaymex),
                             'default' => 'yes',
                             'desc_tip' => true,
                         ),
                         'title' => array(
-                            'title' => __('عنوان درگاه', 'woocommerce'),
+                            'title' => __('عنوان درگاه', GATEIRFO_Iranpaymex),
                             'type' => 'text',
-                            'description' => __('عنوان درگاه که در طی خرید به مشتری نمایش داده میشود', 'woocommerce'),
-                            'default' => __('پرداخت امن ایران پی مکس', 'woocommerce'),
+                            'description' => __('عنوان درگاه که در طی خرید به مشتری نمایش داده میشود', GATEIRFO_Iranpaymex),
+                            'default' => __('پرداخت امن ایران پی مکس', GATEIRFO_Iranpaymex),
                             'desc_tip' => true,
                         ),
                         'description' => array(
-                            'title' => __('توضیحات درگاه', 'woocommerce'),
+                            'title' => __('توضیحات درگاه', GATEIRFO_Iranpaymex),
                             'type' => 'text',
                             'desc_tip' => true,
-                            'description' => __('توضیحاتی که در طی عملیات پرداخت برای درگاه نمایش داده خواهد شد', 'woocommerce'),
-                            'default' => __('پرداخت امن به وسیله کلیه کارت های عضو شتاب از طریق درگاه ایران پی مکس', 'woocommerce')
+                            'description' => __('توضیحاتی که در طی عملیات پرداخت برای درگاه نمایش داده خواهد شد', GATEIRFO_Iranpaymex),
+                            'default' => __('پرداخت امن به وسیله کلیه کارت های عضو شتاب از طریق درگاه ایران پی مکس', GATEIRFO_Iranpaymex)
                         ),
                         'account_confing' => array(
-                            'title' => __('تنظیمات حساب ایران پی مکس', 'woocommerce'),
+                            'title' => __('تنظیمات حساب ایران پی مکس', GATEIRFO_Iranpaymex),
                             'type' => 'title',
                             'description' => '',
                         ),
                         'signature' => array(
-                            'title' => __('کد امضای', 'woocommerce'),
+                            'title' => __('کد امضای', GATEIRFO_Iranpaymex),
                             'type' => 'text',
-                            'description' => __('کد امضای ایران پی مکس', 'woocommerce'),
+                            'description' => __('کد امضای ایران پی مکس', GATEIRFO_Iranpaymex),
                             'default' => 'Iranpaymex',
                             'desc_tip' => true
                         ),
                         'payment_confing' => array(
-                            'title' => __('تنظیمات عملیات پرداخت', 'woocommerce'),
+                            'title' => __('تنظیمات عملیات پرداخت', GATEIRFO_Iranpaymex),
                             'type' => 'title',
                             'description' => '',
                         ),
                         'success_massage' => array(
-                            'title' => __('پیام پرداخت موفق', 'woocommerce'),
+                            'title' => __('پیام پرداخت موفق', GATEIRFO_Iranpaymex),
                             'type' => 'textarea',
-                            'description' => __('متن پیامی که میخواهید بعد از پرداخت موفق به کاربر نمایش دهید را وارد نمایید . همچنین می توانید از شورت کد {transaction_id} برای نمایش کد رهگیری (توکن) ایران پی مکس استفاده نمایید .', 'woocommerce'),
-                            'default' => __('با تشکر از شما . سفارش شما با موفقیت پرداخت شد .', 'woocommerce'),
+                            'description' => __('متن پیامی که میخواهید بعد از پرداخت موفق به کاربر نمایش دهید را وارد نمایید . همچنین می توانید از شورت کد {transaction_id} برای نمایش کد رهگیری (توکن) ایران پی مکس استفاده نمایید .', GATEIRFO_Iranpaymex),
+                            'default' => __('با تشکر از شما . سفارش شما با موفقیت پرداخت شد .', GATEIRFO_Iranpaymex),
                         ),
                         'failed_massage' => array(
-                            'title' => __('پیام پرداخت ناموفق', 'woocommerce'),
+                            'title' => __('پیام پرداخت ناموفق', GATEIRFO_Iranpaymex),
                             'type' => 'textarea',
-                            'description' => __('متن پیامی که میخواهید بعد از پرداخت ناموفق به کاربر نمایش دهید را وارد نمایید . همچنین می توانید از شورت کد {fault} برای نمایش دلیل خطای رخ داده استفاده نمایید . این دلیل خطا از سایت ایران پی مکس ارسال میگردد .', 'woocommerce'),
-                            'default' => __('پرداخت شما ناموفق بوده است . لطفا مجددا تلاش نمایید یا در صورت بروز اشکال با مدیر سایت تماس بگیرید .', 'woocommerce'),
+                            'description' => __('متن پیامی که میخواهید بعد از پرداخت ناموفق به کاربر نمایش دهید را وارد نمایید . همچنین می توانید از شورت کد {fault} برای نمایش دلیل خطای رخ داده استفاده نمایید . این دلیل خطا از سایت ایران پی مکس ارسال میگردد .', GATEIRFO_Iranpaymex),
+                            'default' => __('پرداخت شما ناموفق بوده است . لطفا مجددا تلاش نمایید یا در صورت بروز اشکال با مدیر سایت تماس بگیرید .', GATEIRFO_Iranpaymex),
                         ),
                     )
                 );
@@ -178,18 +180,18 @@ function Load_GATEIRFO_Iranpaymex()
 
 
                 $form = '<form action="" method="POST" class="Iranpaymex-checkout-form" id="Iranpaymex-checkout-form">
-						<input type="submit" name="Iranpaymex_submit" class="button alt" id="Iranpaymex-payment-button" value="' . __('پرداخت', 'woocommerce') . '"/>
-						<a class="button cancel" href="' . $woocommerce->cart->get_checkout_url() . '">' . __('بازگشت', 'woocommerce') . '</a>
+						<input type="submit" name="Iranpaymex_submit" class="button alt" id="Iranpaymex-payment-button" value="' . __('پرداخت', GATEIRFO_Iranpaymex) . '"/>
+						<a class="button cancel" href="' . $woocommerce->cart->get_checkout_url() . '">' . __('بازگشت', GATEIRFO_Iranpaymex) . '</a>
 					 </form><br/>';
                 $form = apply_filters('GATEIRFO_Iranpaymex_Form', $form, $order_id, $woocommerce);
 
                 do_action('GATEIRFO_Iranpaymex_Gateway_Before_Form', $order_id, $woocommerce);
-                echo $form;
+                echo wp_kses_post( $form );
                 do_action('GATEIRFO_Iranpaymex_Gateway_After_Form', $order_id, $woocommerce);
 
 
                 $Amount = intval($order->order_total);
-                $Amount = apply_filters('woocommerce_order_amount_total_IRANIAN_gateways_before_check_currency', $Amount, $currency);
+                $Amount = apply_filters('GATEIRFO_Iranpaymex_order_amount_total_IRANIAN_gateways_before_check_currency', $Amount, $currency);
                 if (
                     strtolower($currency) == strtolower('IRT') || strtolower($currency) == strtolower('TOMAN') || strtolower($currency) == strtolower('Iran TOMAN') || strtolower($currency) == strtolower('Iranian TOMAN') || strtolower($currency) == strtolower('Iran-TOMAN') || strtolower($currency) == strtolower('Iranian-TOMAN') || strtolower($currency) == strtolower('Iran_TOMAN') || strtolower($currency) == strtolower('Iranian_TOMAN') || strtolower($currency) == strtolower('تومان') || strtolower($currency) == strtolower('تومان ایران')
                 )
@@ -202,9 +204,9 @@ function Load_GATEIRFO_Iranpaymex()
                     $Amount = $Amount;
 
 
-                $Amount = apply_filters('woocommerce_order_amount_total_IRANIAN_gateways_after_check_currency', $Amount, $currency);
-                $Amount = apply_filters('woocommerce_order_amount_total_IRANIAN_gateways_irt', $Amount, $currency);
-                $Amount = apply_filters('woocommerce_order_amount_total_Iranpaymex_gateway', $Amount, $currency);
+                $Amount = apply_filters('GATEIRFO_Iranpaymex_order_amount_total_IRANIAN_gateways_after_check_currency', $Amount, $currency);
+                $Amount = apply_filters('GATEIRFO_Iranpaymex_order_amount_total_IRANIAN_gateways_irt', $Amount, $currency);
+                $Amount = apply_filters('GATEIRFO_Iranpaymex_order_amount_total_Iranpaymex_gateway', $Amount, $currency);
 
                 $CallbackUrl = add_query_arg('wc_order', $order_id, WC()->api_request_url('GATEIRFO_Iranpaymex'));
 
@@ -268,12 +270,12 @@ function Load_GATEIRFO_Iranpaymex()
 
                 if (!empty($Message) && $Message) {
 
-                    $Note = sprintf(__('خطا در هنگام ارسال به بانک : %s', 'woocommerce'), $Message);
+                    $Note = sprintf(__('خطا در هنگام ارسال به بانک : %s', GATEIRFO_Iranpaymex), $Message);
                     $Note = apply_filters('GATEIRFO_Iranpaymex_Send_to_Gateway_Failed_Note', $Note, $order_id, $Fault);
                     $order->add_order_note($Note);
 
 
-                    $Notice = sprintf(__('در هنگام اتصال به بانک خطای زیر رخ داده است : <br/>%s', 'woocommerce'), $Message);
+                    $Notice = sprintf(__('در هنگام اتصال به بانک خطای زیر رخ داده است : <br/>%s', GATEIRFO_Iranpaymex), $Message);
                     $Notice = apply_filters('GATEIRFO_Iranpaymex_Send_to_Gateway_Failed_Notice', $Notice, $order_id, $Fault);
                     if ($Notice)
                         wc_add_notice($Notice, 'error');
@@ -309,7 +311,7 @@ function Load_GATEIRFO_Iranpaymex()
 
 
                     $Amount = intval($order->order_total);
-                    $Amount = apply_filters('woocommerce_order_amount_total_IRANIAN_gateways_before_check_currency', $Amount, $currency);
+                    $Amount = apply_filters('GATEIRFO_Iranpaymex_order_amount_total_IRANIAN_gateways_before_check_currency', $Amount, $currency);
                     if (
                         strtolower($currency) == strtolower('IRT') || strtolower($currency) == strtolower('TOMAN') || strtolower($currency) == strtolower('Iran TOMAN') || strtolower($currency) == strtolower('Iranian TOMAN') || strtolower($currency) == strtolower('Iran-TOMAN') || strtolower($currency) == strtolower('Iranian-TOMAN') || strtolower($currency) == strtolower('Iran_TOMAN') || strtolower($currency) == strtolower('Iranian_TOMAN') || strtolower($currency) == strtolower('تومان') || strtolower($currency) == strtolower('تومان ایران')
                     )
@@ -365,9 +367,9 @@ function Load_GATEIRFO_Iranpaymex()
                                 $order->payment_complete($Transaction_ID);
                                 $woocommerce->cart->empty_cart();
 
-                                $Note = sprintf(__('پرداخت موفقیت آمیز بود .<br/> کد رهگیری : %s', 'woocommerce'), $Transaction_ID);
-                                $Note .= sprintf(__('<br/> شماره کارت پرداخت کننده : %s', 'woocommerce'), $verify_card_no);
-                                $Note .= sprintf(__('<br/> شماره مرجع : %s', 'woocommerce'), $verify_ref_num);
+                                $Note = sprintf(__('پرداخت موفقیت آمیز بود .<br/> کد رهگیری : %s', GATEIRFO_Iranpaymex), $Transaction_ID);
+                                $Note .= sprintf(__('<br/> شماره کارت پرداخت کننده : %s', GATEIRFO_Iranpaymex), $verify_card_no);
+                                $Note .= sprintf(__('<br/> شماره مرجع : %s', GATEIRFO_Iranpaymex), $verify_ref_num);
                                 $Note = apply_filters('GATEIRFO_Iranpaymex_Return_from_Gateway_Success_Note', $Note, $order_id, $Transaction_ID, $verify_card_no, $verify_ref_num);
                                 if ($Note)
                                     $order->add_order_note($Note, 1);
@@ -390,7 +392,7 @@ function Load_GATEIRFO_Iranpaymex()
 
                                 $tr_id = ($Transaction_ID && $Transaction_ID != 0) ? ('<br/>توکن : ' . $Transaction_ID) : '';
 
-                                $Note = sprintf(__('خطا در هنگام بازگشت از بانک : %s %s', 'woocommerce'), $Message, $tr_id);
+                                $Note = sprintf(__('خطا در هنگام بازگشت از بانک : %s %s', GATEIRFO_Iranpaymex), $Message, $tr_id);
 
                                 $Note = apply_filters('GATEIRFO_Iranpaymex_Return_from_Gateway_Failed_Note', $Note, $order_id, $Transaction_ID, $Fault);
                                 if ($Note)
@@ -435,7 +437,7 @@ function Load_GATEIRFO_Iranpaymex()
                 } else {
 
 
-                    $Fault = __('شماره سفارش وجود ندارد .', 'woocommerce');
+                    $Fault = __('شماره سفارش وجود ندارد .', GATEIRFO_Iranpaymex);
                     $Notice = wpautop(wptexturize($this->failed_massage));
                     $Notice = str_replace("{fault}", $Fault, $Notice);
                     $Notice = apply_filters('GATEIRFO_Iranpaymex_Return_from_Gateway_No_Order_ID_Notice', $Notice, $order_id, $Fault);
