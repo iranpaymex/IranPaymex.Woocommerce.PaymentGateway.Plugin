@@ -31,7 +31,9 @@ API Base URLs:
 
 Production: https://ipg.iranpaymex.com/api/v1.0-rc/trasnactions/
 
-we use this https://ipg.iranpaymex.com/api/v1.0-rc/trasnactions/create to create the transaction and send user to payment page and https://ipg.iranpaymex.com/api/v1.0-rc/trasnactions/verify to verify the transaction
+we use this https://ipg.iranpaymex.com/api/v1.0-rc/trasnactions/create to create the transaction and create a url to payment page and https://ipg.iranpaymex.com/api/v1.0-rc/trasnactions/verify to verify the transaction
+
+and this url https://ipg.iranpaymex.com/pay is for redirect user to payment page 
 
 This service is provided by IranPayMex: http://iranpaymex.com/terms .
 
