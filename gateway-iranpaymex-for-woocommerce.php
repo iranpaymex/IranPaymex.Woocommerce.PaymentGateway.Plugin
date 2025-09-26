@@ -50,6 +50,7 @@ function Load_GATEIRFO_Iranpaymex()
 
                 add_action('woocommerce_receipt_' . $this->id . '', array($this, 'GATEIRFO_Iranpaymex_Send_to_Iranpaymex_Gateway'));
                 add_action('woocommerce_api_' . strtolower(get_class($this)) . '', array($this, 'GATEIRFO_Iranpaymex_Return_from_Iranpaymex_Gateway'));
+                add_action('admin_notices', array($this, 'admin_notice_missing_accesstoken'));
             }
 
 
@@ -58,6 +59,15 @@ function Load_GATEIRFO_Iranpaymex()
 
 
                 parent::admin_options();
+            }
+                public function admin_notice_missing_merchantcode() {
+                $signature = $this->get_option('signature');
+                if (empty($signature) && 'yes' === $this->get_option('enabled')) {
+                    echo '<div class="notice notice-error is-dismissible">';
+                    echo '<p>' . __('کد امضا درگاه ایران پی‌مکس خالی است. لطفاً آن را در تنظیمات درگاه وارد نمایید.', WC_ZPAL_TEXT_DOMAIN) . '</p>';
+                    echo '<p>' . __('در صورت عدم دسترسی به کد امضا خود لطفا با پشتیبانی ایران ‌پی‌مکس در ارتباط باشید', WC_ZPAL_TEXT_DOMAIN) . '</p>';
+                    echo '</div>';
+                }
             }
 
             public function GATEIRFO_Iranpaymex_init_form_fields()
@@ -98,7 +108,7 @@ function Load_GATEIRFO_Iranpaymex()
                             'description' => '',
                         ),
                         'signature' => array(
-                            'title' => __('کد امضای', GATEIRFO_Iranpaymex),
+                            'title' => __('کد امضا', GATEIRFO_Iranpaymex),
                             'type' => 'text',
                             'description' => __('کد امضای ایران پی‌مکس', GATEIRFO_Iranpaymex),
                             'default' => 'Iranpaymex',
