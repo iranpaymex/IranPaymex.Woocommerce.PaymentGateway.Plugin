@@ -4,9 +4,9 @@ Tags: woocommerce,iran paymex,gateway,payment,ایران پی‌مکس
 Requires at least: 4.5
 Donate link: https://iranpaymex.com
 Requires at least: 4.5
-Version: 5.0.19
+Version: 5.1.1
 Tested up to: 6.8
-Stable tag: 5.0.19
+Stable tag: 5.1.1
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
@@ -38,6 +38,9 @@ and this url https://ipg.iranpaymex.com/pay is for redirect user to payment page
 This service is provided by IranPayMex: http://iranpaymex.com/terms .
 
 == Changelog ==
+= 5.1.1 =
+افزایش سطح امنیت افزونه
+
 = 5.0.19 =
 رفع مشکل ارسال قیمت تمام شده
 

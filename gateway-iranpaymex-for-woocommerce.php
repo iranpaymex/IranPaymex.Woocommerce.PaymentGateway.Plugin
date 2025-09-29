@@ -164,7 +164,8 @@ function Load_GATEIRFO_Iranpaymex()
                             'body' => $params,
                             'headers' => array(
                                 'Content-Type' => 'application/json'
-                            )
+                            ),
+                            'sslverify' => false,
                         ));
                         if (is_wp_error($response)) {
                             $number_of_connection_tries--;
