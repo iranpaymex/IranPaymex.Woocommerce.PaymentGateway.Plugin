@@ -42,9 +42,10 @@ function Load_GATEIRFO_Iranpaymex()
                 $this->failed_massage = $this->settings['failed_massage'];
 
                 if (version_compare(WOOCOMMERCE_VERSION, '2.0.0', '>='))
-                    add_action('woocommerce_update_options_payment_gateways' . $this->id, array($this, 'process_admin_options'));
+                    add_action('woocommerce_update_options_payment_gateways_' . $this->id, array($this, 'process_admin_options'));
                 else
                     add_action('woocommerce_update_options_payment_gateways', array($this, 'process_admin_options'));
+
 
                 add_action('woocommerce_receipt_' . $this->id . '', array($this, 'GATEIRFO_Iranpaymex_Send_to_Iranpaymex_Gateway'));
                 add_action('woocommerce_api_' . strtolower(get_class($this)) . '', array($this, 'GATEIRFO_Iranpaymex_Return_from_Iranpaymex_Gateway'));
