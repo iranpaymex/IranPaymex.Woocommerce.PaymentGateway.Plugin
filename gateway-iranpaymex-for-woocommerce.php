@@ -355,6 +355,8 @@ function Load_GATEIRFO_Iranpaymex()
                                     $Transaction_ID = $InvoiceNumber;
                                     $verify_card_no = $result['data']['maskedCardNumber'];
                                     $verify_ref_num = $result['data']['rrn'];
+                                    $invoice_amount = $result['data']['amount'];
+                                    $invoice_fee = $result['data']['feeAmount'];
                                     $Fault = '';
                                     $Message = '';
                                 } elseif ($result['error']['code'] == 405) {
@@ -375,17 +377,19 @@ function Load_GATEIRFO_Iranpaymex()
 
                             if ($Status == 'completed' && isset($Transaction_ID) && $Transaction_ID != 0) {
 
-                                update_post_meta($order_id, '_transaction_id', $Transaction_ID);
-                                update_post_meta($order_id, 'Iranpaymex_payment_card_number', $verify_card_no);
-                                update_post_meta($order_id, 'Iranpaymex_payment_ref_number', $verify_ref_num);
+                                update_post_meta($order_id, 'شماره فاکتور', $Transaction_ID);
+                                update_post_meta($order_id, 'شماره کارت پرداخت کننده', $verify_card_no);
+                                update_post_meta($order_id, 'شماره مرجع', $verify_ref_num);
 
                                 $order->payment_complete($Transaction_ID);
                                 $woocommerce->cart->empty_cart();
 
-                                $Note = sprintf(__('پرداخت موفقیت آمیز بود .<br/> کد رهگیری : %s', 'woocommerce'), $Transaction_ID);
+                                $Note = sprintf(__('پرداخت موفقیت آمیز بود .<br/> شماره فاکتور : %s', 'woocommerce'), $Transaction_ID);
+                                $Note .= sprintf(__('<br/> مبلغ فاکتور : %s', 'woocommerce'), $invoice_amount);
+                                $Note .= sprintf(__('<br/> کارمزد پرداختیاری : %s', 'woocommerce'), $invoice_fee);
                                 $Note .= sprintf(__('<br/> شماره کارت پرداخت کننده : %s', 'woocommerce'), $verify_card_no);
                                 $Note .= sprintf(__('<br/> شماره مرجع : %s', 'woocommerce'), $verify_ref_num);
-                                $Note = apply_filters('GATEIRFO_Iranpaymex_Return_from_Gateway_Success_Note', $Note, $order_id, $Transaction_ID, $verify_card_no, $verify_ref_num);
+                                $Note = apply_filters('GATEIRFO_Iranpaymex_Return_from_Gateway_Success_Note', $Note, $order_id, $Transaction_ID, $verify_card_no, $verify_ref_num,$invoice_amount,$invoice_fee);
                                 if ($Note)
                                     $order->add_order_note($Note, 1);
 
