@@ -379,7 +379,7 @@ function Load_GATEIRFO_Iranpaymex()
 
                                 update_post_meta($order_id, 'شماره فاکتور', $Transaction_ID);
                                 update_post_meta($order_id, 'شماره کارت پرداخت کننده', $verify_card_no);
-                                update_post_meta($order_id, 'شماره مرجع', $verify_ref_num);
+                                update_post_meta($order_id, 'کد مرجع', $verify_ref_num);
 
                                 $order->payment_complete($Transaction_ID);
                                 $woocommerce->cart->empty_cart();
@@ -388,7 +388,7 @@ function Load_GATEIRFO_Iranpaymex()
                                 $Note .= sprintf(__('<br/> مبلغ فاکتور : %s', 'woocommerce'), $invoice_amount);
                                 $Note .= sprintf(__('<br/> کارمزد پرداختیاری : %s', 'woocommerce'), $invoice_fee);
                                 $Note .= sprintf(__('<br/> شماره کارت پرداخت کننده : %s', 'woocommerce'), $verify_card_no);
-                                $Note .= sprintf(__('<br/> شماره مرجع : %s', 'woocommerce'), $verify_ref_num);
+                                $Note .= sprintf(__('<br/> کد مرجع : %s', 'woocommerce'), $verify_ref_num);
                                 $Note = apply_filters('GATEIRFO_Iranpaymex_Return_from_Gateway_Success_Note', $Note, $order_id, $Transaction_ID, $verify_card_no, $verify_ref_num,$invoice_amount,$invoice_fee);
                                 if ($Note)
                                     $order->add_order_note($Note, 1);
